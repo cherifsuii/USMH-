@@ -26,50 +26,55 @@
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/fr/e/e9/USM_El_Harrach_logo.png" />
     <style>
       :root{
-        --yellow:#FFD700;
-        --black:#000000;
-        --ink:#0f0f0f;
-        --muted:#6f6f6f;
-        --bg:#f6f6f6;
-        --card:#ffffff;
+        --yellow: #FFD700;
+        --black: #000000;
+        --bg: #0a0a0a;
+        --bg-alt: #111111;
+        --card: #141414;
+        --ink: #f1f1f1;
+        --muted: #888888;
+        --border: #2a2a2a;
       }
       *{box-sizing:border-box}
       html,body{margin:0;padding:0}
       body{
         font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
         color:var(--ink);
-        background:#fff;
-        line-height:1.45;
+        background:var(--bg);
+        line-height:1.6;
         background-image:
-          radial-gradient(ellipse at 20% -10%, rgba(255,215,0,.08), transparent 40%),
-          radial-gradient(ellipse at 120% 10%, rgba(255,215,0,.06), transparent 40%);
+          radial-gradient(ellipse at 20% -10%, rgba(255,215,0,.1), transparent 50%),
+          radial-gradient(ellipse at 80% 110%, rgba(255,215,0,.08), transparent 50%);
       }
       /* Utilities */
       .container{width:min(1200px,92%);margin-inline:auto}
-      .section{padding:64px 0}
+      .section{padding:64px 0; border-top: 1px solid var(--border)}
+      #hero { border-top: none; }
       .section-title{font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:900;margin:0 0 18px}
       .clean{list-style:none;padding:0;margin:0}
       .pill{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
-      .pill li{padding:8px 12px;border:1.5px solid #e9e9e9;border-radius:999px;background:#fff}
+      .pill li{padding:8px 12px;border:1.5px solid var(--border);border-radius:999px;background:var(--card); font-weight: 600;}
       /* Buttons */
       .btn{
-        border:2px solid var(--black);
+        border:2px solid var(--yellow);
         padding:12px 20px;
         font-weight:900;
         letter-spacing:.5px;
         text-transform:uppercase;
         cursor:pointer;
         transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+        text-decoration: none;
       }
       .btn-yellow{background:var(--yellow);color:var(--black)}
-      .btn-yellow:hover{background:var(--black);color:var(--yellow);transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.18)}
-      .btn-black{background:var(--black);color:var(--yellow)}
-      .btn-black:hover{background:var(--yellow);color:var(--black);transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.18)}
+      .btn-yellow:hover{background:var(--black);color:var(--yellow);transform:translateY(-2px);box-shadow:0 10px 20px rgba(255,215,0,.1)}
+      .btn-black{background:transparent;color:var(--yellow); border-color: var(--yellow);}
+      .btn-black:hover{background:var(--yellow);color:var(--black);transform:translateY(-2px);box-shadow:0 10px 20px rgba(255,215,0,.1)}
       /* Header */
       .site-header{
-        position:sticky;top:0;z-index:1000;background:#fff;
+        position:sticky;top:0;z-index:1000;background:rgba(10,10,10,.8);
         border-bottom:4px solid var(--yellow);
         transition:box-shadow .2s ease;
+        backdrop-filter: blur(10px);
       }
       .header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
       .brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
@@ -80,35 +85,63 @@
       .nav a:hover{background:var(--yellow);color:var(--black)}
       /* Hero */
       .hero{position:relative;min-height:68vh;display:grid;place-items:center;overflow:hidden}
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255,215,0,0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,215,0,0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.5;
+        z-index: 1;
+      }
+      #rain-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+      }
       .hero-bg{
         position:absolute;inset:0;
         background-image:url('https://www.competition.dz/images/USMH19.jpg');
         background-size:cover;background-position:center;
         transform:scale(1.05);animation:hero-zoom 12s ease-in-out infinite alternate;
-        filter:saturate(1.06) contrast(1.04);
+        filter:saturate(1.06) contrast(1.04) brightness(0.5);
+        opacity: 0.5;
       }
       @keyframes hero-zoom{to{transform:scale(1.1)}}
       .hero-overlay{
         position:absolute;inset:0;
         background:
-          linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-          radial-gradient(ellipse at 50% 120%, rgba(255,215,0,.12), transparent 30%);
+          linear-gradient(180deg, rgba(0,0,0,.35), var(--bg) 90%);
       }
-      .hero-content{position:relative;text-align:center;color:#fff}
+      .hero-content{position:relative;text-align:center;color:#fff; z-index: 3;}
       .hero-title{font-size:clamp(2.2rem,6vw,3.6rem);margin:0 0 6px;font-weight:900;text-shadow:0 4px 16px rgba(0,0,0,.35)}
       .hero-sub{margin:0 0 14px;font-weight:700}
       .hero-ctas{display:flex;gap:10px;justify-content:center}
       /* Meta strip */
-      .club-meta{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.8);color:var(--yellow);border-top:3px solid var(--yellow)}
+      .club-meta{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.8);color:var(--yellow);border-top:3px solid var(--yellow); z-index: 4;}
       .club-meta-inner{display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:8px 0;font-weight:800}
+      /* Animation Utilities */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
       /* Club */
       .club .club-header{display:grid;gap:10px;margin-bottom:18px}
       .club .club-title-wrap{display:flex;align-items:center;gap:12px}
       .club .club-logo{filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
-      .club .club-tagline{margin:0;color:#333;font-weight:700}
+      .club .club-tagline{margin:0;color:var(--muted);font-weight:700}
       .club-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
       .club-card{
-        background:linear-gradient(180deg,#fff,#fdfdfd);border:1px solid #eee;border-radius:14px;padding:16px;
+        background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;
         box-shadow:0 8px 16px rgba(0,0,0,.06);
       }
       .club-card h3{margin:0 0 8px}
@@ -116,24 +149,25 @@
       /* Card hover effects */
       .club-card, .t-item, .kit-card, .team-card, .id-card, .stad-card {
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border-top: 3px solid var(--yellow);
       }
       .club-card:hover, .t-item:hover, .kit-card:hover, .team-card:hover, .id-card:hover, .stad-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0,0,0,.08);
+        box-shadow: 0 0 24px rgba(255, 215, 0, 0.2);
       }
 
       /* Timeline */
-      .history{background:#fff}
+      .history{background:transparent}
       .timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-      .t-item{background:#fff;border:1px solid #eee;border-radius:14px;padding:14px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      .t-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
       .t-date{display:inline-block;font-weight:900;color:var(--black);background:var(--yellow);padding:4px 10px;border-radius:999px;margin-bottom:8px}
       /* Honors */
-      .honors{background:var(--bg)}
+      .honors{background:var(--bg-alt)}
       .trophies{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-      .trophies li{background:#fff;border:1px solid #eee;border-radius:12px;padding:12px;font-weight:800}
+      .trophies li{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;font-weight:800}
       /* Kits */
       .kits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-      .kit-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      .kit-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
       .kit-visual{width:100%;aspect-ratio:3/4;border-radius:12px;box-shadow:inset 0 0 0 8px var(--black),0 14px 28px rgba(0,0,0,.12);position:relative}
       .kit-visual::before{content:"";position:absolute;top:0;left:0;right:0;height:20%;background:var(--black);border-bottom-left-radius:12px;border-bottom-right-radius:12px}
       .kit-visual.home{background:linear-gradient(180deg,var(--yellow),#ffd000)}
@@ -142,17 +176,17 @@
       .kit-visual.third{background:linear-gradient(180deg,#2b2b2b,#111),repeating-linear-gradient(90deg,rgba(255,215,0,.14) 0 8px,transparent 8px 16px)}
       /* Team */
       .team-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-      .team-card{background:linear-gradient(180deg,#fff,#fdfdfd);border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      .team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
       /* Identity */
       .identity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-      .id-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
-      .logo-wrap{display:grid;place-items:center;background:#fff;border-radius:12px;border:1px solid #eee;padding:16px}
+      .id-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      .logo-wrap{display:grid;place-items:center;background:var(--bg);border-radius:12px;border:1px solid var(--border);padding:16px}
       .logo-wrap img{width:min(160px,70%);height:auto}
       /* Stadium */
       .stadium-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-      .stad-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      .stad-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
       /* Fans */
-      .fans{background:var(--bg)}
+      .fans{background:var(--bg-alt)}
       .carousel{position:relative;overflow:hidden;border-radius:14px;background:#111;border:2px solid #161616}
       .car-track{display:flex;transition:transform .4s ease;will-change:transform}
       .car-slide{min-width:100%;aspect-ratio:16/9;display:grid;place-items:center;background:#000}
@@ -248,6 +282,7 @@
       <section id="hero" class="hero">
         <div class="hero-bg" role="img" aria-label="USMH players banner"></div>
         <div class="hero-overlay"></div>
+        <canvas id="rain-canvas"></canvas>
         <div class="container hero-content">
           <h1 class="hero-title">USMH • Union Sportive Madinet El Harrach</h1>
           <p class="hero-sub">Founded 1935 • El Harrach, Algeria</p>
@@ -266,7 +301,7 @@
       </section>
 
       <!-- Club overview -->
-      <section id="club" class="club section">
+      <section id="club" class="club section reveal">
         <div class="container">
           <div class="club-header">
             <div class="club-title-wrap">
@@ -291,7 +326,7 @@
       </section>
 
       <!-- History -->
-      <section id="history" class="history section">
+      <section id="history" class="history section reveal">
         <div class="container">
           <h2 class="section-title">History Timeline</h2>
           <div class="timeline">
@@ -316,7 +351,7 @@
       </section>
 
       <!-- Honors -->
-      <section id="honors" class="honors section">
+      <section id="honors" class="honors section reveal">
         <div class="container">
           <h2 class="section-title">Honors & Records</h2>
           <ul class="trophies">
@@ -328,7 +363,7 @@
       </section>
 
       <!-- Kits showcase -->
-      <section id="kits" class="kits section">
+      <section id="kits" class="kits section reveal">
         <div class="container">
           <h2 class="section-title">Kits • الأقمصة</h2>
           <div class="kits-grid">
@@ -352,7 +387,7 @@
       </section>
 
       <!-- Squad & Staff -->
-      <section id="squad" class="team section">
+      <section id="squad" class="team section reveal">
         <div class="container">
           <h2 class="section-title">Équipe – الفريق</h2>
           <div class="team-grid">
@@ -420,7 +455,7 @@
       </section>
 
       <!-- Logo & Identity -->
-      <section id="identity" class="identity section">
+      <section id="identity" class="identity section reveal">
         <div class="container">
           <h2 class="section-title">Logo & Identity</h2>
           <div class="identity-grid">
@@ -443,7 +478,7 @@
       </section>
 
       <!-- Stadium -->
-      <section id="stadium" class="stadium section">
+      <section id="stadium" class="stadium section reveal">
         <div class="container">
           <h2 class="section-title">Stadium & Address</h2>
           <div class="stadium-grid">
@@ -464,7 +499,7 @@
       </section>
 
       <!-- Fans -->
-      <section id="fans" class="fans section">
+      <section id="fans" class="fans section reveal">
         <div class="container">
           <h2 class="section-title">Fans – الجماهير</h2>
           <div class="carousel" data-index="0">
@@ -472,8 +507,6 @@
             <div class="car-track">
               <div class="car-slide"><img src="https://i.ytimg.com/vi/bSD05FQJixI/maxresdefault.jpg" alt="USMH fans in the stadium with yellow and black flags" loading="lazy" width="1280" height="720" /></div>
               <div class="car-slide"><img src="https://tse1.mm.bing.net/th/id/OIP.U5N_GfH1bVFvTzcH6RpUmAHaE7?cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="A large crowd of USMH supporters during a match" loading="lazy" width="474" height="316" /></div>
-              <div class="car-slide"><img src="https://th.bing.com/th/id/R.ed9e8b66c7a7abbd789efff5f3e37dd8?rik=Sqd%2b%2fBkAUslPEA&riu=http%3a%2f%2fultras-tifo.net%2fimages%2fstories%2f2018%2f10%2fAIK-MFF%2faik-mff-2.jpg&ehk=Sbw1v1EjZ%2bsNozfwrDptrDhu4RjrKEh7Y5tkzizbHdo%3d&risl=&pid=ImgRaw&r=0" alt="USMH fans with a large tifo display" loading="lazy" width="1000" height="667" /></div>
-              <div class="car-slide"><img src="https://th.bing.com/th/id/R.5638b3694088b2e14ae9fa041ae5d1d3?rik=IXqxElM3HKOKog&riu=http%3a%2f%2ffansceneeu.com%2fwp-content%2fuploads%2f2018%2f01%2fgornik-crax-1.jpg&ehk=Y6rioXg3te9zJ5xsv6bRyvRHqi3po8naaFRwkloM0cA%3d&risl=&pid=ImgRaw&r=0" alt="Passionate USMH fans cheering in the stands" loading="lazy" width="1024" height="683" /></div>
             </div>
             <button class="car-btn next" aria-label="Next slide">&#10095;</button>
             <div class="car-dots" aria-hidden="true"></div>
@@ -482,7 +515,7 @@
       </section>
 
       <!-- Contact -->
-      <section id="contact" class="contact section">
+      <section id="contact" class="contact section reveal">
         <div class="container">
           <h2 class="section-title">Contact</h2>
         <p>This page is a non‑commercial portfolio showcase inspired by USMH’s history and identity.</p>
@@ -576,6 +609,79 @@
         carousel.addEventListener('mouseleave', () => auto = setInterval(() => { idx = (idx + 1) % slides.length; update(); }, 5000));
 
         update();
+      });
+
+      // AI Rain Canvas Animation
+      const canvas = document.getElementById('rain-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let particles = [];
+      const particleCount = 100;
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.length = Math.random() * 15 + 5;
+          this.speed = Math.random() * 1 + 0.5;
+          this.color = 'rgba(255, 215, 0, 0.4)';
+        }
+        update() {
+          this.y += this.speed;
+          if (this.y > canvas.height) {
+            this.y = 0 - this.length;
+            this.x = Math.random() * canvas.width;
+          }
+        }
+        draw() {
+          ctx.strokeStyle = this.color;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(this.x, this.y);
+          ctx.lineTo(this.x, this.y + this.length);
+          ctx.stroke();
+        }
+      }
+
+      function initParticles() {
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
+        requestAnimationFrame(animateParticles);
+      }
+
+      initParticles();
+      animateParticles();
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        initParticles();
+      });
+
+      // Scroll Reveal Animation
+      const revealElements = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealElements.forEach(el => {
+        observer.observe(el);
       });
     </script>
   </body>

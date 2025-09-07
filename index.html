@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="fr" style="scroll-behavior: smooth;">
+  <head>
+    <meta charset="utf-8" />
+    <title>USMH • Showroom du Club de Football d'El Harrach</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Découvrez l'Union Sportive Madinet El Harrach (USMH). Une vitrine visuelle de l'histoire du club, son palmarès, ses maillots, son équipe, son identité, son stade et ses supporters." />
+    <meta name="keywords" content="USMH, USM El Harrach, Union Sportive Madinet El Harrach, El Harrach, football, Algérie, club de football, histoire, palmarès, maillots, équipe" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://usmh-showroom.vercel.app/" />
+    <meta property="og:title" content="USMH • Showroom du Club de Football d'El Harrach" />
+    <meta property="og:description" content="Découvrez l'Union Sportive Madinet El Harrach (USMH). Une vitrine visuelle de l'histoire du club, son palmarès, ses maillots, son équipe et ses supporters." />
+    <meta property="og:image" content="https://www.competition.dz/images/USMH19.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://usmh-showroom.vercel.app/" />
+    <meta property="twitter:title" content="USMH • Showroom du Club de Football d'El Harrach" />
+    <meta property="twitter:description" content="Découvrez l'Union Sportive Madinet El Harrach (USMH). Une vitrine visuelle de l'histoire du club, son palmarès, ses maillots, son équipe et ses supporters." />
+    <meta property="twitter:image" content="https://www.competition.dz/images/USMH19.jpg" />
+
+    <link rel="canonical" href="https://usmh-showroom.vercel.app/" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet" />
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/fr/e/e9/USM_El_Harrach_logo.png" />
+    <style>
+      :root{
+        --yellow:#FFD700;
+        --black:#000000;
+        --ink:#0f0f0f;
+        --muted:#6f6f6f;
+        --bg:#f6f6f6;
+        --card:#ffffff;
+      }
+      *{box-sizing:border-box}
+      html,body{margin:0;padding:0}
+      body{
+        font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+        color:var(--ink);
+        background:#fff;
+        line-height:1.45;
+        background-image:
+          radial-gradient(ellipse at 20% -10%, rgba(255,215,0,.08), transparent 40%),
+          radial-gradient(ellipse at 120% 10%, rgba(255,215,0,.06), transparent 40%);
+      }
+      /* Utilities */
+      .container{width:min(1200px,92%);margin-inline:auto}
+      .section{padding:64px 0}
+      .section-title{font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:900;margin:0 0 18px}
+      .clean{list-style:none;padding:0;margin:0}
+      .pill{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+      .pill li{padding:8px 12px;border:1.5px solid #e9e9e9;border-radius:999px;background:#fff}
+      /* Buttons */
+      .btn{
+        border:2px solid var(--black);
+        padding:12px 20px;
+        font-weight:900;
+        letter-spacing:.5px;
+        text-transform:uppercase;
+        cursor:pointer;
+        transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+      }
+      .btn-yellow{background:var(--yellow);color:var(--black)}
+      .btn-yellow:hover{background:var(--black);color:var(--yellow);transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.18)}
+      .btn-black{background:var(--black);color:var(--yellow)}
+      .btn-black:hover{background:var(--yellow);color:var(--black);transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.18)}
+      /* Header */
+      .site-header{
+        position:sticky;top:0;z-index:1000;background:#fff;
+        border-bottom:4px solid var(--yellow);
+        transition:box-shadow .2s ease;
+      }
+      .header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+      .brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
+      .brand-logo{display:block;filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+      .brand-name{font-weight:900}
+      .nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+      .nav a{text-decoration:none;color:var(--ink);font-weight:700;padding:8px 10px;border-radius:6px}
+      .nav a:hover{background:var(--yellow);color:var(--black)}
+      /* Hero */
+      .hero{position:relative;min-height:68vh;display:grid;place-items:center;overflow:hidden}
+      .hero-bg{
+        position:absolute;inset:0;
+        background-image:url('https://www.competition.dz/images/USMH19.jpg');
+        background-size:cover;background-position:center;
+        transform:scale(1.05);animation:hero-zoom 12s ease-in-out infinite alternate;
+        filter:saturate(1.06) contrast(1.04);
+      }
+      @keyframes hero-zoom{to{transform:scale(1.1)}}
+      .hero-overlay{
+        position:absolute;inset:0;
+        background:
+          linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+          radial-gradient(ellipse at 50% 120%, rgba(255,215,0,.12), transparent 30%);
+      }
+      .hero-content{position:relative;text-align:center;color:#fff}
+      .hero-title{font-size:clamp(2.2rem,6vw,3.6rem);margin:0 0 6px;font-weight:900;text-shadow:0 4px 16px rgba(0,0,0,.35)}
+      .hero-sub{margin:0 0 14px;font-weight:700}
+      .hero-ctas{display:flex;gap:10px;justify-content:center}
+      /* Meta strip */
+      .club-meta{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.8);color:var(--yellow);border-top:3px solid var(--yellow)}
+      .club-meta-inner{display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:8px 0;font-weight:800}
+      /* Club */
+      .club .club-header{display:grid;gap:10px;margin-bottom:18px}
+      .club .club-title-wrap{display:flex;align-items:center;gap:12px}
+      .club .club-logo{filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
+      .club .club-tagline{margin:0;color:#333;font-weight:700}
+      .club-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+      .club-card{
+        background:linear-gradient(180deg,#fff,#fdfdfd);border:1px solid #eee;border-radius:14px;padding:16px;
+        box-shadow:0 8px 16px rgba(0,0,0,.06);
+      }
+      .club-card h3{margin:0 0 8px}
+
+      /* Card hover effects */
+      .club-card, .t-item, .kit-card, .team-card, .id-card, .stad-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+      .club-card:hover, .t-item:hover, .kit-card:hover, .team-card:hover, .id-card:hover, .stad-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0,0,0,.08);
+      }
+
+      /* Timeline */
+      .history{background:#fff}
+      .timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+      .t-item{background:#fff;border:1px solid #eee;border-radius:14px;padding:14px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      .t-date{display:inline-block;font-weight:900;color:var(--black);background:var(--yellow);padding:4px 10px;border-radius:999px;margin-bottom:8px}
+      /* Honors */
+      .honors{background:var(--bg)}
+      .trophies{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+      .trophies li{background:#fff;border:1px solid #eee;border-radius:12px;padding:12px;font-weight:800}
+      /* Kits */
+      .kits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+      .kit-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      .kit-visual{width:100%;aspect-ratio:3/4;border-radius:12px;box-shadow:inset 0 0 0 8px var(--black),0 14px 28px rgba(0,0,0,.12);position:relative}
+      .kit-visual::before{content:"";position:absolute;top:0;left:0;right:0;height:20%;background:var(--black);border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+      .kit-visual.home{background:linear-gradient(180deg,var(--yellow),#ffd000)}
+      .kit-visual.away{background:linear-gradient(180deg,#111,#222)}
+      .kit-visual.away::before{background:var(--yellow)}
+      .kit-visual.third{background:linear-gradient(180deg,#2b2b2b,#111),repeating-linear-gradient(90deg,rgba(255,215,0,.14) 0 8px,transparent 8px 16px)}
+      /* Team */
+      .team-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+      .team-card{background:linear-gradient(180deg,#fff,#fdfdfd);border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      /* Identity */
+      .identity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+      .id-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      .logo-wrap{display:grid;place-items:center;background:#fff;border-radius:12px;border:1px solid #eee;padding:16px}
+      .logo-wrap img{width:min(160px,70%);height:auto}
+      /* Stadium */
+      .stadium-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+      .stad-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}
+      /* Fans */
+      .fans{background:var(--bg)}
+      .carousel{position:relative;overflow:hidden;border-radius:14px;background:#111;border:2px solid #161616}
+      .car-track{display:flex;transition:transform .4s ease;will-change:transform}
+      .car-slide{min-width:100%;aspect-ratio:16/9;display:grid;place-items:center;background:#000}
+      .car-slide img{width:100%;height:100%;object-fit:cover;filter:contrast(1.02) saturate(1.02)}
+      .car-btn{
+        position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+        background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.35);
+        width:44px;height:44px;border-radius:50%;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(4px)
+      }
+      .car-btn:hover{background:rgba(255,255,255,.32)}
+      .car-btn.prev{left:10px}.car-btn.next{right:10px}
+      .car-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;gap:8px;justify-content:center}
+      .car-dots .dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.6);background:transparent;cursor:pointer}
+      /* Contact */
+      .contact .socials{display:flex;gap:10px}
+      /* Footer */
+      .site-footer{background:var(--black);color:#eaeaea;margin-top:32px;border-top:6px solid var(--yellow)}
+      .footer-top{display:grid;gap:28px;grid-template-columns:1.3fr 1fr 1fr;padding:24px 0}
+      .footer-brand p{margin:.2rem 0 0}.footer-brand small{color:#bdbdbd}
+      .footer-links h4{margin:0 0 10px;color:var(--yellow);font-weight:900}
+      .footer-links a{display:block;text-decoration:none;color:#eaeaea;margin:6px 0;font-weight:700}
+      .footer-legal p{margin:0;color:#cfcfcf}
+      .footer-bottom{border-top:1px solid #2a2a2a;padding:12px 0;color:#cfcfcf}
+      /* Responsive */
+      @media (max-width: 1200px){
+        .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      }
+      @media (max-width: 1024px){
+        .timeline{grid-template-columns:repeat(2,minmax(0,1fr))}
+        .kits-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+        .identity-grid,.stadium-grid{grid-template-columns:1fr}
+      }
+      @media (max-width: 680px){
+        .nav{display:none}
+        .club-grid{grid-template-columns:1fr}
+        .team-grid{grid-template-columns:1fr}
+        .kits-grid{grid-template-columns:1fr}
+      }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Union Sportive Madinet El Harrach",
+      "alternateName": "USMH",
+      "url": "https://usmh-showroom.vercel.app/",
+      "logo": "https://upload.wikimedia.org/wikipedia/fr/e/e9/USM_El_Harrach_logo.png",
+      "foundingDate": "1935",
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "El Harrach",
+          "addressRegion": "Algiers",
+          "addressCountry": "DZ"
+        }
+      },
+      "sport": "Football",
+      "homeLocation": {
+        "@type": "Stadium",
+        "name": "1 November 1954 Stadium"
+      },
+      "slogan": "Yellow & Black"
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="USMH Home">
+          <img class="brand-logo" src="https://upload.wikimedia.org/wikipedia/fr/e/e9/USM_El_Harrach_logo.png" alt="USMH logo" width="44" height="44" />
+          <span class="brand-name">USMH • Club Showroom</span>
+        </a>
+        <nav class="nav">
+          <a href="#club">Club</a>
+          <a href="#history">History</a>
+          <a href="#honors">Honors</a>
+          <a href="#kits">Kits</a>
+          <a href="#squad">Squad</a>
+          <a href="#identity">Logo</a>
+          <a href="#stadium">Stadium</a>
+          <a href="#fans">Fans</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section id="hero" class="hero">
+        <div class="hero-bg" role="img" aria-label="USMH players banner"></div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <h1 class="hero-title">USMH • Union Sportive Madinet El Harrach</h1>
+          <p class="hero-sub">Founded 1935 • El Harrach, Algeria</p>
+          <div class="hero-ctas">
+            <a href="#club" class="btn btn-yellow">Discover</a>
+            <a href="#history" class="btn btn-black">Timeline</a>
+          </div>
+        </div>
+        <div class="club-meta">
+          <div class="container club-meta-inner">
+            <span>Yellow & Black</span>
+            <span>1935</span>
+            <span>El Harrach</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Club overview -->
+      <section id="club" class="club section">
+        <div class="container">
+          <div class="club-header">
+            <div class="club-title-wrap">
+              <img class="club-logo" src="https://upload.wikimedia.org/wikipedia/fr/e/e9/USM_El_Harrach_logo.png" alt="USMH logo" width="72" height="72" />
+              <h2 class="section-title">Club – النادي</h2>
+            </div>
+            <p class="club-tagline">Union Sportive Madinet El Harrach (USMH) • Fondée en 1935 à El Harrach, Alger • Identité jaune et noir.</p>
+          </div>
+
+          <div class="club-grid">
+            <article class="club-card">
+              <h3>Présentation (FR)</h3>
+              <p>L’USMH, fondée le 7 février 1935 sous le nom USMMC, figure parmi les plus anciens clubs d’Algérie, ancrée à El Harrach et reconnue pour ses couleurs jaune et noir. </p>
+            </article>
+
+            <article class="club-card" dir="rtl" lang="ar">
+              <h3>النادي (AR)</h3>
+              <p>الاتحاد الرياضي لمدينة الحراش (USMH) تأسس عام 1935 باسم USMMC، ويُعد من أعرق أندية الجزائر بهوية صفراء وسوداء ومقره ببلدية الحراش بالعاصمة. </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- History -->
+      <section id="history" class="history section">
+        <div class="container">
+          <h2 class="section-title">History Timeline</h2>
+          <div class="timeline">
+            <div class="t-item">
+              <span class="t-date">1935</span>
+              <p>Foundation as USMMC (Union Sportive Musulmane Maison‑Carréenne), later USMH post‑independence. </p>
+            </div>
+            <div class="t-item">
+              <span class="t-date">1977</span>
+              <p>Reform era: adoption of yellow/black identity across elite clubs, aligning USMH’s modern colors. </p>
+            </div>
+            <div class="t-item">
+              <span class="t-date">1974 • 1987</span>
+              <p>Algerian Cup victories mark national prominence. </p>
+            </div>
+            <div class="t-item">
+              <span class="t-date">1997–98</span>
+              <p>Top-flight national championship title. </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Honors -->
+      <section id="honors" class="honors section">
+        <div class="container">
+          <h2 class="section-title">Honors & Records</h2>
+          <ul class="trophies">
+            <li><strong>Ligue 1</strong> — Champions: 1997–98; Runners‑up: 1983–84, 1991–92, 2012–13.</li>
+            <li><strong>Algerian Cup</strong> — Winners: 1973–74, 1986–87; Finalists: 2010–11.</li>
+            <li><strong>International</strong> — Arab Champions Cup finalists (1985); CAF CL R16 (1999); CAF Cup QF (1993).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Kits showcase -->
+      <section id="kits" class="kits section">
+        <div class="container">
+          <h2 class="section-title">Kits • الأقمصة</h2>
+          <div class="kits-grid">
+            <div class="kit-card">
+              <div class="kit-visual home"></div>
+              <h3>Home 24/25</h3>
+              <p>Vibrant yellow base with bold black details reflecting USMH tradition.</p>
+            </div>
+            <div class="kit-card">
+              <div class="kit-visual away"></div>
+              <h3>Away 24/25</h3>
+              <p>Dark contrast composition with yellow accents for a modern edge.</p>
+            </div>
+            <div class="kit-card">
+              <div class="kit-visual third"></div>
+              <h3>Third 24/25</h3>
+              <p>Concept pattern celebrating heritage striping and performance lines.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Squad & Staff -->
+      <section id="squad" class="team section">
+        <div class="container">
+          <h2 class="section-title">Équipe – الفريق</h2>
+          <div class="team-grid">
+            <article class="team-card">
+              <h3>Staff</h3>
+              <ul class="clean">
+                <li>Entraîneur Séniors: Osmane Abderrahmane</li>
+                <li>Adjoint: Larabi Faycal</li>
+                <li>Préparateur physique: Kharoubi Mohamed Faycal</li>
+                <li>Entraîneur Gardiens: Belalem Hocine</li>
+                <li>Assistant médical: Touat Tahar</li>
+                <li>Secrétaire: Saouli Messaoud</li>
+                <li>Kinésithérapeute: Bentiti Noreddine</li>
+              </ul>
+            </article>
+
+            <article class="team-card">
+              <h3>Gardiens</h3>
+              <ul class="pill">
+                <li>Fawzi Chaouchi</li>
+                <li>Fouad Zegrar</li>
+                <li>Karim Bouhella</li>
+              </ul>
+            </article>
+
+            <article class="team-card">
+              <h3>Défenseurs</h3>
+              <ul class="pill">
+                <li>Ibrahim Ferhat</li>
+                <li>Belkacem Serguine</li>
+                <li>Aymene Boualleg</li>
+                <li>Ayoub Laadjel</li>
+                <li>Rabah Haddadou</li>
+                <li>Rayan Ferhat</li>
+                <li>Fatheddine Amine Mechti</li>
+                <li>Amir Laidouni</li>
+              </ul>
+            </article>
+
+            <article class="team-card">
+              <h3>Milieux</h3>
+              <ul class="pill">
+                <li>Mohamed Daoud</li>
+                <li>Amir Yahia</li>
+                <li>Tahir Nadhir Boudouhiou</li>
+                <li>Massinissa Nait Salem</li>
+                <li>Hacene Ogbi Ben Haddouche</li>
+                <li>Mohamed Islam Belhadj</li>
+              </ul>
+            </article>
+
+            <article class="team-card">
+              <h3>Attaquants</h3>
+              <ul class="pill">
+                <li>Nadjib Benrabah</li>
+                <li>Mohamed Lamine Abid</li>
+                <li>Toufik Elghoumari</li>
+                <li>Sid Ali Mebarki</li>
+                <li>Aymen Laouar</li>
+                <li>Ali Sahraoui</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Logo & Identity -->
+      <section id="identity" class="identity section">
+        <div class="container">
+          <h2 class="section-title">Logo & Identity</h2>
+          <div class="identity-grid">
+            <div class="id-card">
+              <h3>Official Mark</h3>
+              <div class="logo-wrap">
+                <img src="https://upload.wikimedia.org/wikipedia/fr/e/e9/USM_El_Harrach_logo.png" alt="USMH official logo" />
+              </div>
+              <p>Trademarked crest featuring the club’s signature yellow and black identity.</p>
+            </div>
+            <div class="id-card">
+              <h3>Concept Edit</h3>
+              <div class="logo-wrap">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.aYpW99fhxH0eDV1jyK5InwHaHa?cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="USMH logo concept edit" />
+              </div>
+              <p>Stylized visual edit included for portfolio inspiration.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stadium -->
+      <section id="stadium" class="stadium section">
+        <div class="container">
+          <h2 class="section-title">Stadium & Address</h2>
+          <div class="stadium-grid">
+            <article class="stad-card">
+              <h3>1 November 1954 Stadium</h3>
+              <p>Home venue in El Harrach/Mohammadia; capacity commonly referenced at 5,000–8,000 depending on source. </p>
+              <ul class="clean">
+                <li>Location: El Harrach, Algiers</li>
+                <li>Surface: Artificial turf (often cited)</li>
+              </ul>
+            </article>
+            <article class="stad-card">
+              <h3>Club Address</h3>
+              <p>01, Rue des Bibans, 16200, El Harrach, Algeria</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fans -->
+      <section id="fans" class="fans section">
+        <div class="container">
+          <h2 class="section-title">Fans – الجماهير</h2>
+          <div class="carousel" data-index="0">
+            <button class="car-btn prev" aria-label="Previous slide">&#10094;</button>
+            <div class="car-track">
+              <div class="car-slide"><img src="https://i.ytimg.com/vi/bSD05FQJixI/maxresdefault.jpg" alt="USMH fans in the stadium with yellow and black flags" loading="lazy" width="1280" height="720" /></div>
+              <div class="car-slide"><img src="https://tse1.mm.bing.net/th/id/OIP.U5N_GfH1bVFvTzcH6RpUmAHaE7?cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="A large crowd of USMH supporters during a match" loading="lazy" width="474" height="316" /></div>
+              <div class="car-slide"><img src="https://th.bing.com/th/id/R.ed9e8b66c7a7abbd789efff5f3e37dd8?rik=Sqd%2b%2fBkAUslPEA&riu=http%3a%2f%2fultras-tifo.net%2fimages%2fstories%2f2018%2f10%2fAIK-MFF%2faik-mff-2.jpg&ehk=Sbw1v1EjZ%2bsNozfwrDptrDhu4RjrKEh7Y5tkzizbHdo%3d&risl=&pid=ImgRaw&r=0" alt="USMH fans with a large tifo display" loading="lazy" width="1000" height="667" /></div>
+              <div class="car-slide"><img src="https://th.bing.com/th/id/R.5638b3694088b2e14ae9fa041ae5d1d3?rik=IXqxElM3HKOKog&riu=http%3a%2f%2ffansceneeu.com%2fwp-content%2fuploads%2f2018%2f01%2fgornik-crax-1.jpg&ehk=Y6rioXg3te9zJ5xsv6bRyvRHqi3po8naaFRwkloM0cA%3d&risl=&pid=ImgRaw&r=0" alt="Passionate USMH fans cheering in the stands" loading="lazy" width="1024" height="683" /></div>
+            </div>
+            <button class="car-btn next" aria-label="Next slide">&#10095;</button>
+            <div class="car-dots" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="contact section">
+        <div class="container">
+          <h2 class="section-title">Contact</h2>
+        <p>This page is a non‑commercial portfolio showcase inspired by USMH’s history and identity.</p>
+          <div class="socials">
+            <a class="btn btn-black" href="#top" aria-label="Back to top">Back to Top</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-brand">
+          <img src="https://upload.wikimedia.org/wikipedia/fr/e/e9/USM_El_Harrach_logo.png" alt="USMH logo" width="56" height="56" />
+          <p>USMH — Union Sportive Madinet El Harrach</p>
+          <small>Showroom • © 2025</small>
+        </div>
+        <nav class="footer-links">
+          <h4>Explore</h4>
+          <a href="#club">Club</a>
+          <a href="#history">History</a>
+          <a href="#honors">Honors</a>
+          <a href="#kits">Kits</a>
+          <a href="#squad">Squad</a>
+          <a href="#identity">Logo</a>
+          <a href="#stadium">Stadium</a>
+          <a href="#fans">Fans</a>
+        </nav>
+        <div class="footer-legal">
+          <p>Logos are trademarks of their respective owners; used here for identification and portfolio display.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <small>Made for portfolio showcase • No commerce</small>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scroll for nav and buttons
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-scroll], a[href^="#"]');
+        if (!btn) return;
+        let target = btn.getAttribute('data-scroll') || btn.getAttribute('href');
+        if (!target || target === '#') return;
+        const el = document.querySelector(target);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      // Header shadow on scroll
+      const header = document.querySelector('.site-header');
+      const toggleShadow = () => {
+        header.style.boxShadow = window.scrollY > 8 ? '0 8px 18px rgba(0,0,0,.08)' : 'none';
+      };
+      window.addEventListener('scroll', toggleShadow);
+      toggleShadow();
+
+      // Fans carousel
+      document.querySelectorAll('.carousel').forEach(carousel => {
+        const track = carousel.querySelector('.car-track');
+        const slides = Array.from(carousel.querySelectorAll('.car-slide'));
+        const prev = carousel.querySelector('.prev');
+        const next = carousel.querySelector('.next');
+        const dots = carousel.querySelector('.car-dots');
+        let idx = 0;
+
+        const renderDots = () => {
+          dots.innerHTML = '';
+          slides.forEach((_, i) => {
+            const d = document.createElement('button');
+            d.className = 'dot';
+            d.style.background = i === idx ? '#FFD700' : 'transparent';
+            d.addEventListener('click', () => { idx = i; update(); });
+            dots.appendChild(d);
+          });
+        };
+        const update = () => {
+          track.style.transform = \`translateX(-\${idx * 100}%)\`;
+          renderDots();
+        };
+
+        prev.addEventListener('click', () => { idx = (idx - 1 + slides.length) % slides.length; update(); });
+        next.addEventListener('click', () => { idx = (idx + 1) % slides.length; update(); });
+
+        let auto = setInterval(() => { idx = (idx + 1) % slides.length; update(); }, 5000);
+        carousel.addEventListener('mouseenter', () => clearInterval(auto));
+        carousel.addEventListener('mouseleave', () => auto = setInterval(() => { idx = (idx + 1) % slides.length; update(); }, 5000));
+
+        update();
+      });
+    </script>
+  </body>
+</html>

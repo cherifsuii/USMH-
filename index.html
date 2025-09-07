@@ -124,16 +124,6 @@
       /* Meta strip */
       .club-meta{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.8);color:var(--yellow);border-top:3px solid var(--yellow); z-index: 4;}
       .club-meta-inner{display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:8px 0;font-weight:800}
-      /* Animation Utilities */
-      .reveal {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
-      }
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
       /* Club */
       .club .club-header{display:grid;gap:10px;margin-bottom:18px}
       .club .club-title-wrap{display:flex;align-items:center;gap:12px}
@@ -301,7 +291,7 @@
       </section>
 
       <!-- Club overview -->
-      <section id="club" class="club section reveal">
+      <section id="club" class="club section">
         <div class="container">
           <div class="club-header">
             <div class="club-title-wrap">
@@ -326,7 +316,7 @@
       </section>
 
       <!-- History -->
-      <section id="history" class="history section reveal">
+      <section id="history" class="history section">
         <div class="container">
           <h2 class="section-title">History Timeline</h2>
           <div class="timeline">
@@ -351,7 +341,7 @@
       </section>
 
       <!-- Honors -->
-      <section id="honors" class="honors section reveal">
+      <section id="honors" class="honors section">
         <div class="container">
           <h2 class="section-title">Honors & Records</h2>
           <ul class="trophies">
@@ -363,7 +353,7 @@
       </section>
 
       <!-- Kits showcase -->
-      <section id="kits" class="kits section reveal">
+      <section id="kits" class="kits section">
         <div class="container">
           <h2 class="section-title">Kits • الأقمصة</h2>
           <div class="kits-grid">
@@ -387,7 +377,7 @@
       </section>
 
       <!-- Squad & Staff -->
-      <section id="squad" class="team section reveal">
+      <section id="squad" class="team section">
         <div class="container">
           <h2 class="section-title">Équipe – الفريق</h2>
           <div class="team-grid">
@@ -455,7 +445,7 @@
       </section>
 
       <!-- Logo & Identity -->
-      <section id="identity" class="identity section reveal">
+      <section id="identity" class="identity section">
         <div class="container">
           <h2 class="section-title">Logo & Identity</h2>
           <div class="identity-grid">
@@ -478,7 +468,7 @@
       </section>
 
       <!-- Stadium -->
-      <section id="stadium" class="stadium section reveal">
+      <section id="stadium" class="stadium section">
         <div class="container">
           <h2 class="section-title">Stadium & Address</h2>
           <div class="stadium-grid">
@@ -499,7 +489,7 @@
       </section>
 
       <!-- Fans -->
-      <section id="fans" class="fans section reveal">
+      <section id="fans" class="fans section">
         <div class="container">
           <h2 class="section-title">Fans – الجماهير</h2>
           <div class="carousel" data-index="0">
@@ -515,7 +505,7 @@
       </section>
 
       <!-- Contact -->
-      <section id="contact" class="contact section reveal">
+      <section id="contact" class="contact section">
         <div class="container">
           <h2 class="section-title">Contact</h2>
         <p>This page is a non‑commercial portfolio showcase inspired by USMH’s history and identity.</p>
@@ -667,21 +657,6 @@
         canvas.height = window.innerHeight;
         particles = [];
         initParticles();
-      });
-
-      // Scroll Reveal Animation
-      const revealElements = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      revealElements.forEach(el => {
-        observer.observe(el);
       });
     </script>
   </body>
